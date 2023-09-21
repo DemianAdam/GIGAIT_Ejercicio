@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="b3870b02-dc5a-4f1f-9c7f-4ff7f34034c4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8080/PaymentBoxService" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="PaymentBoxService.xsd" MetadataType="Schema" ID="ee92bba5-7ac5-4dd8-9242-304e1a3cb284" SourceId="1" SourceUrl="http://localhost:8080/PaymentBoxService?xsd=xsd1" />
+    <MetadataFile FileName="PaymentBoxService1.xsd" MetadataType="Schema" ID="4039121c-6fc9-4cea-95d2-977254961667" SourceId="1" SourceUrl="http://localhost:8080/PaymentBoxService?xsd=xsd2" />
+    <MetadataFile FileName="PaymentBoxService.wsdl" MetadataType="Wsdl" ID="26fde234-fbd5-44e7-96b2-b88fee9ff5e1" SourceId="1" SourceUrl="http://localhost:8080/PaymentBoxService?wsdl" />
+    <MetadataFile FileName="PaymentBoxService.disco" MetadataType="Disco" ID="e8a70e49-a7a7-4b79-bfb1-ebdf5d4dc3db" SourceId="1" SourceUrl="http://localhost:8080/PaymentBoxService?disco" />
+    <MetadataFile FileName="PaymentBoxService2.xsd" MetadataType="Schema" ID="6478d388-6a76-456e-ab42-494fec6bcc48" SourceId="1" SourceUrl="http://localhost:8080/PaymentBoxService?xsd=xsd0" />
+    <MetadataFile FileName="PaymentBoxService3.xsd" MetadataType="Schema" ID="58e11ae1-1dbd-4dbb-90af-40415482b233" SourceId="1" SourceUrl="http://localhost:8080/PaymentBoxService?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

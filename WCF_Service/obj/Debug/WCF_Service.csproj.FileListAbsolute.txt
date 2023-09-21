@@ -1,0 +1,18 @@
+D:\Escritorio\GIGA IT\MVVM_Cajas_De_Pago\WCF_Service\bin\Debug\WCF_Service.dll
+D:\Escritorio\GIGA IT\MVVM_Cajas_De_Pago\WCF_Service\bin\Debug\WCF_Service.pdb
+D:\Escritorio\GIGA IT\MVVM_Cajas_De_Pago\WCF_Service\bin\Debug\Models.dll
+D:\Escritorio\GIGA IT\MVVM_Cajas_De_Pago\WCF_Service\bin\Debug\Models.pdb
+D:\Escritorio\GIGA IT\MVVM_Cajas_De_Pago\WCF_Service\obj\Debug\WCF_Service.csproj.AssemblyReference.cache
+D:\Escritorio\GIGA IT\MVVM_Cajas_De_Pago\WCF_Service\obj\Debug\WCF_Service.csproj.CoreCompileInputs.cache
+D:\Escritorio\GIGA IT\MVVM_Cajas_De_Pago\WCF_Service\obj\Debug\WCF_Service.csproj.CopyComplete
+D:\Escritorio\GIGA IT\MVVM_Cajas_De_Pago\WCF_Service\obj\Debug\WCF_Service.dll
+D:\Escritorio\GIGA IT\MVVM_Cajas_De_Pago\WCF_Service\obj\Debug\WCF_Service.pdb
+D:\Escritorio\Ordered Escritorio\GIGA IT\MVVM_Cajas_De_Pago\WCF_Service\bin\Debug\WCF_Service.dll
+D:\Escritorio\Ordered Escritorio\GIGA IT\MVVM_Cajas_De_Pago\WCF_Service\bin\Debug\WCF_Service.pdb
+D:\Escritorio\Ordered Escritorio\GIGA IT\MVVM_Cajas_De_Pago\WCF_Service\bin\Debug\Models.dll
+D:\Escritorio\Ordered Escritorio\GIGA IT\MVVM_Cajas_De_Pago\WCF_Service\bin\Debug\Models.pdb
+D:\Escritorio\Ordered Escritorio\GIGA IT\MVVM_Cajas_De_Pago\WCF_Service\obj\Debug\WCF_Service.csproj.AssemblyReference.cache
+D:\Escritorio\Ordered Escritorio\GIGA IT\MVVM_Cajas_De_Pago\WCF_Service\obj\Debug\WCF_Service.csproj.CoreCompileInputs.cache
+D:\Escritorio\Ordered Escritorio\GIGA IT\MVVM_Cajas_De_Pago\WCF_Service\obj\Debug\WCF_Service.csproj.CopyComplete
+D:\Escritorio\Ordered Escritorio\GIGA IT\MVVM_Cajas_De_Pago\WCF_Service\obj\Debug\WCF_Service.dll
+D:\Escritorio\Ordered Escritorio\GIGA IT\MVVM_Cajas_De_Pago\WCF_Service\obj\Debug\WCF_Service.pdb

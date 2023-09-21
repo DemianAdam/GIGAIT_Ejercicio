@@ -1,0 +1,6 @@
+D:\Escritorio\GIGA IT\MVVM_Cajas_De_Pago\Models\bin\Release\Models.dll
+D:\Escritorio\GIGA IT\MVVM_Cajas_De_Pago\Models\bin\Release\Models.pdb
+D:\Escritorio\GIGA IT\MVVM_Cajas_De_Pago\Models\obj\Release\Models.csproj.AssemblyReference.cache
+D:\Escritorio\GIGA IT\MVVM_Cajas_De_Pago\Models\obj\Release\Models.csproj.CoreCompileInputs.cache
+D:\Escritorio\GIGA IT\MVVM_Cajas_De_Pago\Models\obj\Release\Models.dll
+D:\Escritorio\GIGA IT\MVVM_Cajas_De_Pago\Models\obj\Release\Models.pdb

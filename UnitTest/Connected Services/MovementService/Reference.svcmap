@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="ba6437b4-020a-4cd4-983e-7470d7d4c19d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8080/MovementService" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="MovementService.xsd" MetadataType="Schema" ID="a51e1c57-819d-44bf-b2e9-716823ec6fd2" SourceId="1" SourceUrl="http://localhost:8080/MovementService?xsd=xsd2" />
+    <MetadataFile FileName="MovementService4.xsd" MetadataType="Schema" ID="eceb8a6e-9350-473f-946d-f0ad388a8372" SourceId="1" SourceUrl="http://localhost:8080/MovementService?xsd=xsd4" />
+    <MetadataFile FileName="MovementService.wsdl" MetadataType="Wsdl" ID="1457937c-6937-4370-81f6-1a64fd1ef680" SourceId="1" SourceUrl="http://localhost:8080/MovementService?wsdl" />
+    <MetadataFile FileName="MovementService1.xsd" MetadataType="Schema" ID="5f90cfc1-ba51-4174-b1ca-ba0910a44040" SourceId="1" SourceUrl="http://localhost:8080/MovementService?xsd=xsd3" />
+    <MetadataFile FileName="MovementService2.xsd" MetadataType="Schema" ID="42f68027-67be-42f2-b10c-68c5773d90c5" SourceId="1" SourceUrl="http://localhost:8080/MovementService?xsd=xsd0" />
+    <MetadataFile FileName="MovementService.disco" MetadataType="Disco" ID="b795e413-3bbd-48c7-b82e-f5622c35a934" SourceId="1" SourceUrl="http://localhost:8080/MovementService?disco" />
+    <MetadataFile FileName="MovementService3.xsd" MetadataType="Schema" ID="d027ce0d-52fe-4bbe-ba7d-c9a4f4ff2040" SourceId="1" SourceUrl="http://localhost:8080/MovementService?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

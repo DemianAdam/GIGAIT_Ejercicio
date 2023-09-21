@@ -1,0 +1,11 @@
+D:\Escritorio\Ordered Escritorio\GIGA IT\MVVM_Cajas_De_Pago\SharedResources\bin\Debug\SharedResources.dll
+D:\Escritorio\Ordered Escritorio\GIGA IT\MVVM_Cajas_De_Pago\SharedResources\bin\Debug\SharedResources.pdb
+D:\Escritorio\Ordered Escritorio\GIGA IT\MVVM_Cajas_De_Pago\SharedResources\obj\Debug\SharedResources.csproj.AssemblyReference.cache
+D:\Escritorio\Ordered Escritorio\GIGA IT\MVVM_Cajas_De_Pago\SharedResources\obj\Debug\SharedResources.baml
+D:\Escritorio\Ordered Escritorio\GIGA IT\MVVM_Cajas_De_Pago\SharedResources\obj\Debug\SharedResources_MarkupCompile.cache
+D:\Escritorio\Ordered Escritorio\GIGA IT\MVVM_Cajas_De_Pago\SharedResources\obj\Debug\SharedResources.g.resources
+D:\Escritorio\Ordered Escritorio\GIGA IT\MVVM_Cajas_De_Pago\SharedResources\obj\Debug\SharedResources.Properties.Resources.resources
+D:\Escritorio\Ordered Escritorio\GIGA IT\MVVM_Cajas_De_Pago\SharedResources\obj\Debug\SharedResources.csproj.GenerateResource.cache
+D:\Escritorio\Ordered Escritorio\GIGA IT\MVVM_Cajas_De_Pago\SharedResources\obj\Debug\SharedResources.csproj.CoreCompileInputs.cache
+D:\Escritorio\Ordered Escritorio\GIGA IT\MVVM_Cajas_De_Pago\SharedResources\obj\Debug\SharedResources.dll
+D:\Escritorio\Ordered Escritorio\GIGA IT\MVVM_Cajas_De_Pago\SharedResources\obj\Debug\SharedResources.pdb
