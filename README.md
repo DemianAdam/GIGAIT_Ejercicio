@@ -1,5 +1,3 @@
----
-
 # Instrucciones de Implementación y Ejecución
 
 **Proyecto: Gestión de Disponibilidad de Caja de Pago**
