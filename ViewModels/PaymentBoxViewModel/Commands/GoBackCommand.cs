@@ -12,6 +12,9 @@ using System.Windows;
 
 namespace ViewModels.Commands
 {
+    /// <summary>
+    /// GoBackCommand class. This class represents the command for going back to the login view.
+    /// </summary>
     public class GoBackCommand : AsyncCommandBase
     {
         private readonly NavigationService navigationService;
@@ -23,6 +26,11 @@ namespace ViewModels.Commands
             this.navigationService = navigationService;
         }
 
+        /// <summary>
+        /// This method deactivates the payment box and navigates to the login view.
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
         public override async Task ExecuteAsync(object parameter)
         {
             try

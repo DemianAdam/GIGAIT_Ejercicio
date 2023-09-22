@@ -12,6 +12,9 @@ using WCF_Service.Faults;
 
 namespace WCF_Service.Services
 {
+    /// <summary>
+    /// PaymentBoxService class. This class represents the service for the PaymentBox model.
+    /// </summary>
     public partial class PaymentBoxService : IPaymentBoxService
     {
         public void Activate(int paymentBoxId)

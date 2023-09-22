@@ -17,7 +17,10 @@ using ViewModels.Services;
 using ViewModels.Stores;
 
 namespace ViewModels.Commands
-{
+{ 
+    /// <summary>
+    /// LoginCommand class. This class represents the command for the LoginView.
+    /// </summary>
     public class LoginCommand : AsyncCommandBase
     {
         private readonly ParameterNavigationService<PaymentBoxViewParameter> paymentBoxViewNavigationService;
@@ -28,6 +31,12 @@ namespace ViewModels.Commands
             return loginViewModel.PaymentBoxes.Any() && loginViewModel.PaymentBox != null && base.CanExecute(parameter);
         }
 
+
+        /// <summary>
+        /// This method activates the payment box and navigates to the payment box view.
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
         public override async Task ExecuteAsync(object parameter)
         {
             try

@@ -10,6 +10,9 @@ using Models;
 
 namespace WCF_Service
 {
+    /// <summary>
+    /// DbOperation class. This class represents a database operation.
+    /// </summary>
     internal class DbOperation : IDisposable
     {
         private SqlConnection connection;

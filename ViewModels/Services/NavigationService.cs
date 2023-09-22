@@ -7,6 +7,9 @@ using ViewModels.Stores;
 
 namespace ViewModels.Services
 {
+    /// <summary>
+    /// NavigationService class. This class represents the navigation service.
+    /// </summary>
     public class NavigationService
     {
         private readonly NavigationStore navigationStore;

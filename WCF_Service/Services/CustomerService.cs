@@ -12,14 +12,11 @@ using WCF_Service.Contracts;
 
 namespace WCF_Service.Services
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
-
-    //[ServiceContract]
+    /// <summary>
+    /// CustomerService class. This class represents the service for the Customer model.
+    /// </summary>
     public partial class CustomerService : ICustomerService
     {
-
-
-        // [OperationContract(Name = "AddCustomer")]
         public int Add(Customer customer)
         {
             using (DbOperation context = new DbOperation())
@@ -35,13 +32,11 @@ namespace WCF_Service.Services
             }
         }
 
-        //  [OperationContract(Name = "DeleteCustomer")]
         public void Delete(Customer entity)
         {
             throw new NotImplementedException();
         }
 
-        // [OperationContract(Name = "SelectAllCustomers")]
         public IEnumerable<Customer> SelectAll()
         {
             List<Customer> customers = new List<Customer>();
@@ -61,7 +56,6 @@ namespace WCF_Service.Services
             return customers;
         }
 
-        //  [OperationContract(Name = "SelectAllUnattendedCustomers")]
         public IEnumerable<Customer> SelectAllUnattendedCustomers()
         {
             List<Customer> customers = new List<Customer>();
@@ -81,7 +75,6 @@ namespace WCF_Service.Services
             return customers;
         }
 
-        // [OperationContract(Name = "SelectCustomerById")]
         public Customer SelectById(int id)
         {
             Customer customer = new Customer();
@@ -101,7 +94,6 @@ namespace WCF_Service.Services
             return customer;
         }
 
-        //  [OperationContract(Name = "UpdateCustomer")]
         public void Update(Customer entity)
         {
             throw new NotImplementedException();

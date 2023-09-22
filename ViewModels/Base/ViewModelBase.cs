@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ViewModels
 {
+    /// <summary>
+    /// ViewModelBase class. This class represents the base view model.
+    /// </summary>
     public class ViewModelBase : INotifyPropertyChanged
     {   
         public event PropertyChangedEventHandler PropertyChanged;

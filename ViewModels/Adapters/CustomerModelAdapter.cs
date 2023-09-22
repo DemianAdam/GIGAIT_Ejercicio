@@ -3,6 +3,9 @@ using System;
 
 namespace ViewModels
 {
+    /// <summary>
+    /// CustomerModelAdapter class. This class is an adapter for the Customer model.
+    /// </summary>
     public class CustomerModelAdapter : ViewModelBase
     {
         private readonly Customer customer;

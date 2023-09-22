@@ -11,6 +11,9 @@ using ViewModels.MovementService;
 
 namespace ViewModels.CustomerViewModel.Commands
 {
+    /// <summary>
+    /// SuscribeCommand class. This class represents the command for suscribe a customer.
+    /// </summary>
     public class SuscribeCommand : AsyncCommandBase
     {
         private CustomerViewModel customerViewModel;

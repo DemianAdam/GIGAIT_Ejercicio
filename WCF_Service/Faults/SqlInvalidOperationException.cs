@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace WCF_Service.Faults
 {
+    /// <summary>
+    /// SqlInvalidOperationException class. This class represents a SqlInvalidOperation exception.
+    /// </summary>
     [DataContract]
     public class SqlInvalidOperationException
     {

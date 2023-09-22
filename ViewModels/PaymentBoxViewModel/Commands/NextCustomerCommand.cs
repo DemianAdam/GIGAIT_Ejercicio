@@ -12,6 +12,9 @@ using ViewModels.PaymentBoxService;
 
 namespace ViewModels.Commands
 {
+    /// <summary>
+    /// NextCustomerCommand class. This class represents the command for the button that adds a new customer to the queue.
+    /// </summary>
     public class NextCustomerCommand : AsyncCommandBase
     {
         private readonly PaymentBoxViewModel paymentBoxViewModel;
@@ -32,6 +35,11 @@ namespace ViewModels.Commands
 
         }
 
+        /// <summary>
+        /// This method adds a new customer to the queue and publishes the movement.
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
         public override async Task ExecuteAsync(object parameter)
         {
             try

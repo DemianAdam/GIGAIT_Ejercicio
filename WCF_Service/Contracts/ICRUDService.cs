@@ -5,6 +5,10 @@ using WCF_Service.Faults;
 
 namespace WCF_Service.Contracts
 {
+    /// <summary>
+    /// ICRUDService interface. This interface represents the CRUD service.
+    /// </summary>
+    /// <typeparam name="T">Generic type.</typeparam>
     [ServiceContract]
     public interface ICRUDService<T> where T : class
     {

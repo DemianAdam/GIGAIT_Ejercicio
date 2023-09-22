@@ -10,6 +10,9 @@ using ViewModels.CustomerViewModel.Commands;
 
 namespace ViewModels.CustomerViewModel
 {
+    /// <summary>
+    /// CustomerViewModel class. This class represents the customer view model.
+    /// </summary>
     public class CustomerViewModel : ViewModelBase
     {
         private readonly MovementCallback movementCallback;
@@ -19,6 +22,9 @@ namespace ViewModels.CustomerViewModel
         public Queue<MovementModelAdapter> Movements => new Queue<MovementModelAdapter>(movements);
         public Queue<CustomerModelAdapter> Customers => new Queue<CustomerModelAdapter>(customers);
 
+        /// <summary>
+        /// FirstMovement property. This property represents the first movement.
+        /// </summary>
         public string FirstMovement
         {
             get

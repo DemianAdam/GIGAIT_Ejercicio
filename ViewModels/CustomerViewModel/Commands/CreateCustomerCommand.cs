@@ -13,6 +13,9 @@ using ViewModels.MovementService;
 
 namespace ViewModels.CustomerViewModel.Commands
 {
+    /// <summary>
+    /// CreateCustomerCommand class. This class represents the command for creating a Customer.
+    /// </summary>
     public class CreateCustomerCommand : AsyncCommandBase
     {
         private readonly CustomerViewModel customerViewModel;

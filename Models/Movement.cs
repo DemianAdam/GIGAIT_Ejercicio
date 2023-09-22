@@ -6,6 +6,9 @@ using System.Text;
 
 namespace Models
 {
+    /// <summary>
+    /// Movement model. This model represents a movement of a customer in a payment box.
+    /// </summary>
     [DataContract]
     public class Movement
     {

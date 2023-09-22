@@ -6,7 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Models
-{
+{ 
+    /// <summary>
+    /// Customer model. This model represents a customer.
+    /// </summary>
     [DataContract]
     public class Customer
     {

@@ -7,6 +7,10 @@ using ViewModels.Stores;
 
 namespace ViewModels.Services
 {
+    /// <summary>
+    /// ParameterNavigationService class. This class represents a parameter navigation service.
+    /// </summary>
+    /// <typeparam name="TParameter"></typeparam>
     public class ParameterNavigationService<TParameter>
     {
         private readonly NavigationStore navigationStore;

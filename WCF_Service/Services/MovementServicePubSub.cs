@@ -9,6 +9,10 @@ using WCF_Service.Contracts;
 
 namespace WCF_Service.Services
 {
+    /// <summary>
+    /// MovementService class. This class represents the MovementService. 
+    /// This file is specific for the PubSub pattern implementation.
+    /// </summary>
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
     public partial class MovementService
     {

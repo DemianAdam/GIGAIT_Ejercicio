@@ -15,6 +15,9 @@ using ViewModels.Adapters;
 
 namespace ViewModels
 {
+    /// <summary>
+    /// LoginViewModel class. This class represents the login view model.
+    /// </summary>
     public class LoginViewModel : ViewModelBase
     {
         private readonly ObservableCollection<PaymentBoxModelAdapter> paymentBoxes;
@@ -34,7 +37,6 @@ namespace ViewModels
                 OnPropertyChanged(nameof(PaymentBox));
             }
         }
-        //public PaymentBoxModelAdapter SelectedPaymentBox => selectedIndex >= 0 ? paymentBoxes[selectedIndex] : null;
         public ICommand LoginCommand { get; }
 
         public ICommand SignUpCommand { get; }

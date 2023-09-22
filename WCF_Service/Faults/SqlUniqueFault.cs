@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace WCF_Service.Faults
 {
+    /// <summary>
+    /// SqlUniqueFault class. This class represents a fault for a unique constraint violation.
+    /// </summary>
     [DataContract]
     public class SqlUniqueFault 
     {

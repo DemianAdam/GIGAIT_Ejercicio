@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace Models
 {
+    /// <summary>
+    /// ObservableStack model. This is a custom implementation of Stack<T> that implements INotifyCollectionChanged and INotifyPropertyChanged.
+    /// </summary>
+    /// <typeparam name="T"> The type of elements in the stack. </typeparam>
     public class ObservableStack<T> : Stack<T>, INotifyCollectionChanged, INotifyPropertyChanged
     {
         public event NotifyCollectionChangedEventHandler CollectionChanged;

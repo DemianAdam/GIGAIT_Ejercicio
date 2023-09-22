@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Models
 {
+    /// <summary>
+    /// PaymentBox model. This model represents a payment box.
+    /// </summary>
     [DataContract]
     public class PaymentBox
     {

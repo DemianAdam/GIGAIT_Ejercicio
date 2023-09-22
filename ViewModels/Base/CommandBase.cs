@@ -7,6 +7,9 @@ using System.Windows.Input;
 
 namespace ViewModels
 {
+    /// <summary>
+    /// CommandBase class. This class represents a base command.
+    /// </summary>
     public abstract class CommandBase : ICommand
     {
         public event EventHandler CanExecuteChanged;

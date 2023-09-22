@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ViewModels.Adapters
 {
+    /// <summary>
+    /// PaymentBoxViewParameter model. This model represents a parameter for the PaymentBoxView.
+    /// </summary>
     public class PaymentBoxViewParameter
     {
         public PaymentBoxViewParameter(PaymentBoxModelAdapter paymentBox)

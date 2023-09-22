@@ -8,8 +8,9 @@ using WCF_Service.Contracts;
 
 namespace WCF_Service.Services
 {
-    //GIGAIT_Service
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "DbService" in both code and config file together.
+    /// <summary>
+    /// DbService class. This class represents the service for the database.
+    /// </summary>
     public partial class DbService : IDbService
     {
         public void ResetDatabase()

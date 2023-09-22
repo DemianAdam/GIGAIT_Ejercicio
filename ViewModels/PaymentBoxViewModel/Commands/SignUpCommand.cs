@@ -15,6 +15,9 @@ using ViewModels.Services;
 
 namespace ViewModels.Commands
 {
+    /// <summary>
+    /// SignUpCommand class. This class represents the command for signing up a new payment box.
+    /// </summary>
     public class SignUpCommand : AsyncCommandBase
     {
         private readonly LoginViewModel loginViewModel;
@@ -40,6 +43,11 @@ namespace ViewModels.Commands
             }
         }
 
+        /// <summary>
+        /// This method adds a new payment box and navigates to the payment box view.
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
         public override async Task ExecuteAsync(object parameter)
         {
             try
@@ -51,11 +59,7 @@ namespace ViewModels.Commands
                 };
                 using (var client = new PaymentBoxServiceClient())
                 {
-                    await client.AddAsync(paymentBox);
-                }
-                using (var client = new PaymentBoxServiceClient())
-                {
-                    paymentBox.Id = await client.SelectIdByNameAsync(paymentBox.Name);
+                    paymentBox.Id = await client.AddAsync(paymentBox);
                 }
                 PaymentBoxViewParameter paymentBoxViewParameter = new PaymentBoxViewParameter(new PaymentBoxModelAdapter(paymentBox));
                 paymentBoxViewNavigationService.Navigate(paymentBoxViewParameter);

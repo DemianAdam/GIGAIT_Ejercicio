@@ -21,9 +21,12 @@ namespace Customer_View
         {
             navigationStore = new NavigationStore();
         }
+
+        /// <summary>
+        /// OnStartup method to load the MainWindow and set the DataContext to the CustomerViewModel
+        /// </summary>
         protected override void OnStartup(StartupEventArgs e)
         {
-            //navigationStore.CurrentViewModel = new CustomerViewModel();
 
             MainWindow = new MainWindow()
             {

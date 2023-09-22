@@ -2,6 +2,9 @@
 
 namespace ViewModels
 {
+    /// <summary>
+    /// PaymentBoxModelAdapter class. This class is an adapter for the PaymentBox model.
+    /// </summary>
     public class PaymentBoxModelAdapter : ViewModelBase
     {
         private readonly PaymentBox paymentBox;

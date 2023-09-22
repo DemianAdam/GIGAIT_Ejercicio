@@ -9,6 +9,9 @@ using ViewModels.MovementService;
 
 namespace ViewModels.Base
 {
+    /// <summary>
+    /// MovementCallback class. This class represents the callback for the MovementService.
+    /// </summary>
     public class MovementCallback : IMovementServiceCallback
     {
         public InstanceContext InstanceContext { get; }

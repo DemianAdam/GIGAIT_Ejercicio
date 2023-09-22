@@ -7,6 +7,9 @@ using ViewModels.Stores;
 
 namespace ViewModels
 {
+    /// <summary>
+    /// MainViewModel class. This class represents the main view model.
+    /// </summary>
     public class MainViewModel : ViewModelBase
     {
         private readonly NavigationStore navigationStore;

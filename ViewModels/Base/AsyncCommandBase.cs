@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ViewModels
 {
+    /// <summary>
+    /// AsyncCommandBase class. This class represents a base async command.
+    /// </summary>
     public abstract class AsyncCommandBase : CommandBase
     {
         private bool isExecuting;

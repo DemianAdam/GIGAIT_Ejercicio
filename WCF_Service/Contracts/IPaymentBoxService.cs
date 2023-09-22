@@ -4,6 +4,9 @@ using WCF_Service.Faults;
 
 namespace WCF_Service.Contracts
 {
+    /// <summary>
+    /// IPaymentBoxService interface. This interface contains the methods that the PaymentBoxService implements.
+    /// </summary>
     [ServiceContract]
     public interface IPaymentBoxService : ICRUDService<PaymentBox>
     {

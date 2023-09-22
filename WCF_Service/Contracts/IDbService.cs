@@ -7,7 +7,9 @@ using System.Text;
 
 namespace WCF_Service.Contracts
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IDbService" in both code and config file together.
+    /// <summary>
+    /// IDbService interface. This interface represents the contract for the DbService.
+    /// </summary>
     [ServiceContract]
     public interface IDbService
     {

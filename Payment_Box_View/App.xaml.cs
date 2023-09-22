@@ -23,6 +23,11 @@ namespace Payment_Box_View
         {
             navigationStore = new NavigationStore();
         }
+
+        /// <summary>
+        /// OnStartup method to load the MainWindow and set the DataContext to the MainViewModel
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnStartup(StartupEventArgs e)
         {
             navigationStore.CurrentViewModel = CreateLoginViewModel();
@@ -37,11 +42,20 @@ namespace Payment_Box_View
             base.OnStartup(e);
         }
 
+        /// <summary>
+        /// CreateLoginViewModel method to create a LoginViewModel
+        /// </summary>
+        /// <returns>a LoginViewModel</returns>
         private LoginViewModel CreateLoginViewModel()
         {
             return LoginViewModel.LoadLoginViewModel(new ParameterNavigationService<PaymentBoxViewParameter>(navigationStore, CreatePaymentBoxViewModel));
         }
 
+        /// <summary>
+        /// CreatePaymentBoxViewModel method to create a PaymentBoxViewModel
+        /// </summary>
+        /// <param name="paymentBox"> PaymentBoxViewParameter to pass to the PaymentBoxViewModel</param>
+        /// <returns></returns>
         private PaymentBoxViewModel CreatePaymentBoxViewModel(PaymentBoxViewParameter paymentBox)
         {
             return new PaymentBoxViewModel(new NavigationService(navigationStore, CreateLoginViewModel), paymentBox);

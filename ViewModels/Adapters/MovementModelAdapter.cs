@@ -3,6 +3,10 @@ using System;
 
 namespace ViewModels
 {
+
+    /// <summary>
+    /// MovementModelAdapter class. This class is an adapter for the Movement model.
+    /// </summary>
     public class MovementModelAdapter : ViewModelBase
     {
         private readonly Movement movement;

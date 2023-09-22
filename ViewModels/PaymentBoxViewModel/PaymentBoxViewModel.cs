@@ -16,6 +16,9 @@ using ViewModels.PaymentBoxService;
 
 namespace ViewModels
 {
+    /// <summary>
+    /// PaymenBoxViewModel class. This class represents the view model for the PaymentBoxView.
+    /// </summary>
     public class PaymentBoxViewModel : ViewModelBase
     {
         private readonly ObservableStack<MovementModelAdapter> movementsHistory;

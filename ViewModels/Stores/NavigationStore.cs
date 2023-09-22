@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ViewModels.Stores
 {
+	/// <summary>
+	/// NavigationStore class. This class represents the navigation store.
+	/// </summary>
     public class NavigationStore
     {
 		private ViewModelBase currentViewModel;

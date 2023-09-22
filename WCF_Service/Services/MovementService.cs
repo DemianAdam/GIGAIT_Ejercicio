@@ -7,10 +7,11 @@ using Models;
 
 namespace WCF_Service.Services
 {
-
+    /// <summary>
+    /// MovementService class. This class represents the service for the Movement model.
+    /// </summary>
     public partial class MovementService : IMovementService
     {
-        //  [OperationContract(Name = "AddMovement")]
         public int Add(Movement movement)
         {
             using (var context = new DbOperation())

@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace Models
 {
+    /// <summary>
+    /// ObservableQueue model. This is a custom implementation of Queue<T> that implements INotifyCollectionChanged and INotifyPropertyChanged.
+    /// </summary>
+    /// <typeparam name="T"> The type of elements in the queue. </typeparam>
     public class ObservableQueue<T> : Queue<T>, INotifyCollectionChanged, INotifyPropertyChanged
     {
         public event NotifyCollectionChangedEventHandler CollectionChanged;
