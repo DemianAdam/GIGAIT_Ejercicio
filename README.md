@@ -43,6 +43,4 @@ Asegúrese de tener los siguientes componentes instalados en su entorno de desar
 
 - Asegúrese de que los proyectos de vista "Customer_View" y "Payment_Box_View" estén configurados correctamente y puedan consumir el servicio WCF. Actualice las referencias del servicio si es necesario.
 
-- Proporcione instrucciones claras sobre cómo ejecutar cada proyecto de vista. Esto podría incluir la compilación de los proyectos y la ejecución de las aplicaciones cliente.
-
 ---
