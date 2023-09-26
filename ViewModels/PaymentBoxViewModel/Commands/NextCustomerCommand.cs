@@ -31,8 +31,6 @@ namespace ViewModels.Commands
             {
                 return true;
             }
-
-
         }
 
         /// <summary>
@@ -56,7 +54,7 @@ namespace ViewModels.Commands
                     PaymentBox = paymentBox
                 };
 
-                using (var client = new MovementServiceClient(new InstanceContext(new MovementCallback(UpdateMovements))))
+                using (var client = new MovementServiceClient(new InstanceContext(new MovementCallback())))
                 {
                     int id = await client.AddAsync(movement);
                     movement.Id = id;
@@ -68,11 +66,6 @@ namespace ViewModels.Commands
             {
                 MessageBox.Show("Failed to add movement", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        private void UpdateMovements(Queue<Movement> value)
-        {
-
         }
 
         public NextCustomerCommand(PaymentBoxViewModel paymentBoxViewModel)

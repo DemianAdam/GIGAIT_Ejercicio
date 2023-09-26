@@ -60,7 +60,7 @@ namespace WCF_Service.Services
 
                 try
                 {
-                    result = Convert.ToInt32(context.ExecuteNonQuery("AddPaymentBox", CommandType.StoredProcedure, parameters));
+                    result = Convert.ToInt32(context.ExecuteQueryScalar("AddPaymentBox", CommandType.StoredProcedure, parameters));
                 }
                 catch (SqlException ex)
                 {

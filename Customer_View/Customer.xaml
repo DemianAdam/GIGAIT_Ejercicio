@@ -21,7 +21,19 @@
         </Grid.RowDefinitions>
 
         <ListBox Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Movements}" Padding="10">
-
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="ID: {0} Caja de pago: {1} Creado el {2}">
+                                <Binding Path="Id" />
+                                <Binding Path="PaymentBox.Name" />
+                                <Binding Path="CreationDate" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
 
         </ListBox>
 
@@ -54,10 +66,10 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Column="0" Grid.Row="1" Text="Nombre" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
-                <TextBox Grid.Column="0" Grid.Row="2" Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" Padding="5 0"/>
+                <TextBox Grid.Column="0" Grid.Row="2" Text="{Binding CustomerName,UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" Padding="5 0"/>
 
                 <TextBlock Grid.Column="1" Grid.Row="1" Text="Apellido" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
-                <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding LastName,UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" Padding="5 0"/>
+                <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding CustomerLastName,UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" Padding="5 0"/>
 
 
                 <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Text="Añadir cliente" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>

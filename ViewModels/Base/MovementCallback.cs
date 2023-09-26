@@ -5,6 +5,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModels.CustomerViewModel;
 using ViewModels.MovementService;
 
 namespace ViewModels.Base
@@ -15,16 +16,17 @@ namespace ViewModels.Base
     public class MovementCallback : IMovementServiceCallback
     {
         public InstanceContext InstanceContext { get; }
-        private readonly Action<Queue<Movement>> action;
-        public MovementCallback(Action<Queue<Movement>> action)
+        public event Action<IEnumerable<Movement>> DataRecived;
+        public MovementCallback()
         {
             InstanceContext = new InstanceContext(this);
-            this.action = action;
         }
+
 
         public void MovementsChanged(Queue<Movement> value)
         {
-            action.Invoke(value);
+           // viewModelBase.UpdateMovements(value);
+            DataRecived?.Invoke(value);
         }
     }
 }
