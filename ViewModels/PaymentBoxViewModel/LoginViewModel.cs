@@ -40,6 +40,8 @@ namespace ViewModels
         public ICommand LoginCommand { get; }
 
         public ICommand SignUpCommand { get; }
+
+        //TODO: Implement reposytory pattern insead of using the following command.
         public ICommand LoadPaymentBoxesCommand { get; }
 
         private int selectedIndex = -1;

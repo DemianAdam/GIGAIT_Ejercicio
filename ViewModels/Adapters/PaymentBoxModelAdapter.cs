@@ -10,12 +10,11 @@ namespace ViewModels
         private readonly PaymentBox paymentBox;
         public int Id => paymentBox.Id;
         public string Name => paymentBox.Name;
-        public bool IsActive { get;  set; }
+        public bool IsActive { get => paymentBox.IsActive ; set => paymentBox.IsActive = value; }
 
         public PaymentBoxModelAdapter(PaymentBox paymentBox)
         {
             this.paymentBox = paymentBox;
-            this.IsActive = paymentBox.IsActive;
         }
 
         public override string ToString()

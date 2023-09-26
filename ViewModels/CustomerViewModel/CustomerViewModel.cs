@@ -1,12 +1,15 @@
 ﻿using Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ViewModels.Base;
+using ViewModels.CustomerService;
 using ViewModels.CustomerViewModel.Commands;
+using ViewModels.MovementService;
 
 namespace ViewModels.CustomerViewModel
 {
@@ -15,92 +18,70 @@ namespace ViewModels.CustomerViewModel
     /// </summary>
     public class CustomerViewModel : ViewModelBase
     {
-        private readonly MovementCallback movementCallback;
-        private readonly ObservableQueue<MovementModelAdapter> movements;
-        private readonly ObservableQueue<CustomerModelAdapter> customers;
         private List<MovementModelAdapter> firstMovements = new List<MovementModelAdapter>();
-        public Queue<MovementModelAdapter> Movements => new Queue<MovementModelAdapter>(movements);
-        public Queue<CustomerModelAdapter> Customers => new Queue<CustomerModelAdapter>(customers);
+        public ObservableQueue<MovementModelAdapter> Movements { get; }
+        public ObservableQueue<CustomerModelAdapter> Customers { get; }
+        private readonly IMovementService movementService;
+
 
         /// <summary>
         /// FirstMovement property. This property represents the first movement.
         /// </summary>
         public string FirstMovement
         {
-            get
-            {
-                if (firstMovements.Count > 0)
-                {
-                    return $"{firstMovements[0].Customer?.Name} Pase a la caja: {firstMovements[0].PaymentBox.Name}";
-                }
-                return string.Empty;
-            }
+            get => GetMovementString(1);
         }
 
         public string SecondMovement
         {
-            get
-            {
-                if (firstMovements.Count > 1)
-                {
-                    return $"{firstMovements[1].Customer?.Name} Pase a la caja: {firstMovements[1].PaymentBox.Name}";
-                }
-                return string.Empty;
-            }
+            get => GetMovementString(2);
         }
 
         public string ThirdMovement
         {
-            get
-            {
-                if (firstMovements.Count > 2)
-                {
-                    return $"{firstMovements[2].Customer?.Name} Pase a la caja: {firstMovements[2].PaymentBox.Name}";
-                }
-                return string.Empty;
-            }
+            get => GetMovementString(3);
         }
 
         public string FourthMovement
         {
-            get
-            {
-                if (firstMovements.Count > 3)
-                {
-                    return $"{firstMovements[3].Customer?.Name} Pase a la caja: {firstMovements[3].PaymentBox.Name}";
-                }
-                return string.Empty;
-            }
+            get => GetMovementString(4);
         }
 
+        private string GetMovementString(int index)
+        {
+            index--;
+            if (firstMovements.Count > index)
+            {
+                return $"{firstMovements[index].Customer?.Name} Pase a la caja: {firstMovements[index].PaymentBox.Name}";
+            }
+            return string.Empty;
+        }
 
-
-
-        private string name;
-        public string Name
+        private string customerName;
+        public string CustomerName
         {
             get
             {
-                return name;
+                return customerName;
             }
             set
             {
-                name = value;
-                OnPropertyChanged(nameof(Name));
+                customerName = value;
+                OnPropertyChanged(nameof(CustomerName));
             }
         }
 
-        private string lastName;
-        public string LastName
+        private string customerLastName;
+        public string CustomerLastName
         {
             get
             {
-                return lastName;
+                return customerLastName;
             }
             set
             {
-                lastName = value;
-                OnPropertyChanged(nameof(LastName));
+                customerLastName = value;
+                OnPropertyChanged(nameof(CustomerLastName));
             }
         }
 
@@ -108,46 +89,83 @@ namespace ViewModels.CustomerViewModel
 
         public ICommand SuscribeCommand { get; }
 
-        public CustomerViewModel()
+
+
+        public CustomerViewModel(IMovementService movementService, ICustomerService customerService)
         {
-            this.customers = new ObservableQueue<CustomerModelAdapter>();
-            movements = new ObservableQueue<MovementModelAdapter>();
-            this.movementCallback = new MovementCallback(UpdateMovements);
-            CreateCustomerCommand = new CreateCustomerCommand(this);
-            SuscribeCommand = new SuscribeCommand(this, movementCallback);
-            this.movements.CollectionChanged += Movements_CollectionChanged;
+            this.movementService = movementService;
+            Customers = new ObservableQueue<CustomerModelAdapter>();
+            Movements = new ObservableQueue<MovementModelAdapter>();
+            CreateCustomerCommand = new CreateCustomerCommand(this, customerService);
+            SuscribeCommand = new SuscribeCommand(this, movementService);
+            Customers.CollectionChanged += Customers_CollectionChanged;
+            Movements.CollectionChanged += Movements_CollectionChanged;
         }
 
-        private void Movements_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void Movements_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            OnPropertyChanged(nameof(Movements));
+
         }
 
-        public static CustomerViewModel LoadCustomerViewModel()
+        private void Customers_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            CustomerViewModel customerViewModel = new CustomerViewModel();
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                //CustomerModelAdapter customer = e.NewItems[0] as CustomerModelAdapter;
+
+                /*TODO: Implement this using DI and Repository pattern
+                try
+                {
+                    if (customerViewModel.Movements.Any())
+                    {
+                        MovementModelAdapter modelAdapter = customerViewModel.Movements.Peek();
+
+                        Movement movement = new Movement()
+                        {
+                            Id = modelAdapter.Id,
+                            Customer = customer,
+                        };
+
+                        using (var client = new MovementServiceClient(new InstanceContext(new MovementCallback((a) => { }))))
+                        {
+                            await client.UpdateAsync(movement);
+                        }
+                        customerViewModel.Movements.Pop();
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Failed to update Movement.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                */
+            }
+        }
+
+
+        public static CustomerViewModel LoadCustomerViewModel(IMovementService movementService, ICustomerService customerService)
+        {
+            CustomerViewModel customerViewModel = new CustomerViewModel(movementService, customerService);
             customerViewModel.SuscribeCommand.Execute(null);
             return customerViewModel;
         }
 
         public void UpdateMovements(IEnumerable<Movement> movements)
         {
-            this.movements.Clear();
+            this.Movements.Clear();
             foreach (var movement in movements)
             {
-                if (customers.Any())
+                if (Customers.Any())
                 {
-                    Customer customer =  customers.Dequeue().ToCustomer();
+                    Customer customer = Customers.Dequeue().ToCustomer();
                     movement.Customer = customer;
                 }
-                this.movements.Enqueue(new MovementModelAdapter(movement));
+                this.Movements.Enqueue(new MovementModelAdapter(movement));
             }
-            firstMovements = this.movements.Take(4).ToList();
+            firstMovements = this.Movements.Take(4).ToList();
             OnPropertyChanged(nameof(FirstMovement));
             OnPropertyChanged(nameof(SecondMovement));
             OnPropertyChanged(nameof(ThirdMovement));
             OnPropertyChanged(nameof(FourthMovement));
         }
-
     }
 }

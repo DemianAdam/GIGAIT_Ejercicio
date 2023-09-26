@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -95,6 +96,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{B43EBBEE-7C2C-44FD-B45A-D345CC618A94}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SharedResources\SharedResources.csproj">
       <Project>{336ecb80-1da1-40cb-81d2-313a85610b4a}</Project>
       <Name>SharedResources</Name>

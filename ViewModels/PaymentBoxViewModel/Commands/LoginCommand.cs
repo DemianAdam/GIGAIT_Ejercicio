@@ -42,7 +42,7 @@ namespace ViewModels.Commands
             try
             {
                 PaymentBoxViewParameter param;
-                InstanceContext context = new InstanceContext(new MovementCallback(UpdateMovements));
+                InstanceContext context = new InstanceContext(new MovementCallback());
                 using (var client = new MovementServiceClient(context))
                 {
                     var result = await client.SelectAllAsync();

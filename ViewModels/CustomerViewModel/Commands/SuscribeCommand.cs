@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using ViewModels.Base;
+using ViewModels.CustomerService;
 using ViewModels.MovementService;
 
 namespace ViewModels.CustomerViewModel.Commands
@@ -17,21 +18,19 @@ namespace ViewModels.CustomerViewModel.Commands
     public class SuscribeCommand : AsyncCommandBase
     {
         private CustomerViewModel customerViewModel;
-        private MovementCallback movementCallback;
-        private MovementServiceClient client;
+        private readonly IMovementService movementService;
 
-        public SuscribeCommand(CustomerViewModel customerViewModel, MovementCallback movementCallback)
+        public SuscribeCommand(CustomerViewModel customerViewModel, IMovementService movementService)
         {
+            this.movementService = movementService;
             this.customerViewModel = customerViewModel;
-            this.movementCallback = movementCallback;
         }
 
         public override async Task ExecuteAsync(object parameter)
         {
             try
             {
-                client = new MovementServiceClient(movementCallback.InstanceContext);
-                await client.SubscribeAsync();
+                movementService.Subscribe();
             }
             catch (Exception)
             {
@@ -40,26 +39,12 @@ namespace ViewModels.CustomerViewModel.Commands
 
             try
             {
-                IEnumerable<Movement> movements = (await client.SelectAllAsync()).Where(x => x.Customer is null);
-                foreach (Movement movement in movements) 
-                {
-                   await client.PublishAsync(movement);
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Failed to get movements.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-
-            try
-            {
-                
+                IEnumerable<Movement> movements = (await movementService.SelectAllAsync()).Where(x => x.Customer is null);
+                customerViewModel.UpdateMovements(movements);
             }
             catch (Exception)
             {
-
-                throw;
+                MessageBox.Show("Failed to get movements.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

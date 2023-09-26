@@ -27,7 +27,6 @@ namespace ViewModels
         public string Name => "Caja de pago: " + paymentBox.Name;
         public ICommand NextCustomerCommand { get; }
         public ICommand GoBackCommand { get; }
-        public ICommand ReloadCommand { get; }
         public ObservableStack<MovementModelAdapter> MovementsHistory => movementsHistory;
 
         public PaymentBoxViewModel(NavigationService navigationService, PaymentBoxViewParameter paymentBoxViewParameter)
