@@ -18,6 +18,8 @@ namespace ViewModels.Commands
     public class NextCustomerCommand : AsyncCommandBase
     {
         private readonly PaymentBoxViewModel paymentBoxViewModel;
+        private readonly IMovementService movementService;
+        private readonly IPaymentBoxService paymentBoxService;
 
         public override bool CanExecute(object parameter)
         {
@@ -67,7 +69,12 @@ namespace ViewModels.Commands
                 MessageBox.Show("Failed to add movement", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
+        public NextCustomerCommand(PaymentBoxViewModel paymentBoxViewModel, IMovementService movementService, IPaymentBoxService paymentBoxService)
+        {
+            this.paymentBoxViewModel = paymentBoxViewModel;
+            this.movementService = movementService;
+            this.paymentBoxService = paymentBoxService;
+        }
         public NextCustomerCommand(PaymentBoxViewModel paymentBoxViewModel)
         {
             this.paymentBoxViewModel = paymentBoxViewModel;

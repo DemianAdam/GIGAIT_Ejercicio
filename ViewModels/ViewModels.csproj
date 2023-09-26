@@ -47,6 +47,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\ServiceParameter.cs" />
     <Compile Include="Adapters\MovementModelAdapter.cs" />
     <Compile Include="Adapters\PaymentBoxModelAdapter.cs" />
     <Compile Include="Adapters\PaymentBoxViewParameter.cs" />
