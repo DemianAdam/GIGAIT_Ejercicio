@@ -9,6 +9,7 @@ using ViewModels.Services;
 using Models;
 using System.ServiceModel;
 using System.Windows;
+using ViewModels.Adapters;
 
 namespace ViewModels.Commands
 {
@@ -17,12 +18,12 @@ namespace ViewModels.Commands
     /// </summary>
     public class GoBackCommand : AsyncCommandBase
     {
-        private readonly NavigationService navigationService;
-        private readonly PaymentBoxModelAdapter paymentBox;
+        private readonly ParameterNavigationService<ServiceParameter> navigationService;
+        private readonly PaymentBoxViewParameter paymentBoxViewParameter;
 
-        public GoBackCommand(PaymentBoxModelAdapter paymentBox, NavigationService navigationService)
+        public GoBackCommand(ParameterNavigationService<ServiceParameter> navigationService, PaymentBoxViewParameter paymentBoxViewParameter)
         {
-            this.paymentBox = paymentBox;
+            this.paymentBoxViewParameter = paymentBoxViewParameter;
             this.navigationService = navigationService;
         }
 
@@ -35,12 +36,11 @@ namespace ViewModels.Commands
         {
             try
             {
-                using (var client = new PaymentBoxServiceClient())
-                {
-                    await client.DeactivateAsync(paymentBox.Id);
-                }
-                paymentBox.IsActive = false;
-                navigationService.Navigate();
+                await paymentBoxViewParameter.ServiceParameter.PaymentBoxService.DeactivateAsync(paymentBoxViewParameter.PaymentBox.Id);
+                paymentBoxViewParameter.PaymentBox.IsActive = false;
+
+                ServiceParameter param = new ServiceParameter(paymentBoxViewParameter.ServiceParameter.MovementService, paymentBoxViewParameter.ServiceParameter.PaymentBoxService);
+                navigationService.Navigate(param);
             }
             catch (FaultException<SqlInvalidOperationException> ex)
             {

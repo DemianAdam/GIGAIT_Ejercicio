@@ -167,5 +167,12 @@ namespace ViewModels.CustomerViewModel
             OnPropertyChanged(nameof(ThirdMovement));
             OnPropertyChanged(nameof(FourthMovement));
         }
+
+        public override void Dispose()
+        {
+            Customers.CollectionChanged -= Customers_CollectionChanged;
+            Movements.CollectionChanged -= Movements_CollectionChanged;
+            base.Dispose();
+        }
     }
 }

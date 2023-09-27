@@ -22,14 +22,16 @@ namespace ViewModels.Commands
     {
         private readonly LoginViewModel loginViewModel;
         private readonly ParameterNavigationService<PaymentBoxViewParameter> paymentBoxViewNavigationService;
+        private readonly ServiceParameter serviceParameter;
 
         override public bool CanExecute(object parameter)
         {
             return !string.IsNullOrEmpty(loginViewModel.NewPaymentBoxName) && base.CanExecute(parameter);
         }
 
-        public SignUpCommand(LoginViewModel loginViewModel, ParameterNavigationService<PaymentBoxViewParameter> paymentBoxViewNavigationService)
+        public SignUpCommand(LoginViewModel loginViewModel, ParameterNavigationService<PaymentBoxViewParameter> paymentBoxViewNavigationService, ServiceParameter loginViewParameter)
         {
+            this.serviceParameter = loginViewParameter;
             this.loginViewModel = loginViewModel;
             this.paymentBoxViewNavigationService = paymentBoxViewNavigationService;
             loginViewModel.PropertyChanged += OnLoginViewModel_PropertyChanged;
@@ -57,11 +59,9 @@ namespace ViewModels.Commands
                     Name = loginViewModel.NewPaymentBoxName,
                     IsActive = true
                 };
-                using (var client = new PaymentBoxServiceClient())
-                {
-                    paymentBox.Id = await client.AddAsync(paymentBox);
-                }
-                PaymentBoxViewParameter paymentBoxViewParameter = new PaymentBoxViewParameter(new PaymentBoxModelAdapter(paymentBox));
+                paymentBox.Id = await serviceParameter.PaymentBoxService.AddAsync(paymentBox);
+
+                PaymentBoxViewParameter paymentBoxViewParameter = new PaymentBoxViewParameter(new PaymentBoxModelAdapter(paymentBox), serviceParameter);
                 paymentBoxViewNavigationService.Navigate(paymentBoxViewParameter);
             }
             catch (FaultException<SqlUniqueFault> ex)

@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using ViewModels.Adapters;
 using ViewModels.Base;
 using ViewModels.MovementService;
 using ViewModels.PaymentBoxService;
@@ -18,6 +19,9 @@ namespace ViewModels.Commands
     public class NextCustomerCommand : AsyncCommandBase
     {
         private readonly PaymentBoxViewModel paymentBoxViewModel;
+        private readonly ServiceParameter serviceParameter;
+        private readonly IMovementService movementService;
+        private readonly IPaymentBoxService paymentBoxService;
 
         public override bool CanExecute(object parameter)
         {
@@ -43,23 +47,14 @@ namespace ViewModels.Commands
             try
             {
                 PaymentBox paymentBox;
-                using (var client = new PaymentBoxServiceClient())
-                {
-                    paymentBox = await client.SelectByIdAsync(paymentBoxViewModel.Id);
-                }
-
+                paymentBox = await serviceParameter.PaymentBoxService.SelectByIdAsync(paymentBoxViewModel.Id);
                 Movement movement = new Movement()
                 {
                     CreationDate = DateTime.Now,
                     PaymentBox = paymentBox
                 };
-
-                using (var client = new MovementServiceClient(new InstanceContext(new MovementCallback())))
-                {
-                    int id = await client.AddAsync(movement);
-                    movement.Id = id;
-                    await client.PublishAsync(movement);
-                }
+                movement.Id = await serviceParameter.MovementService.AddAsync(movement);
+                await serviceParameter.MovementService.PublishAsync(movement);
                 paymentBoxViewModel.MovementsHistory.Push(new MovementModelAdapter(movement));
             }
             catch (Exception)
@@ -68,9 +63,10 @@ namespace ViewModels.Commands
             }
         }
 
-        public NextCustomerCommand(PaymentBoxViewModel paymentBoxViewModel)
+        public NextCustomerCommand(PaymentBoxViewModel paymentBoxViewModel, ServiceParameter serviceParameter)
         {
             this.paymentBoxViewModel = paymentBoxViewModel;
+            this.serviceParameter = serviceParameter;
         }
     }
 }

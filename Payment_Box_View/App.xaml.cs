@@ -4,10 +4,14 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.ServiceModel;
 using System.Threading.Tasks;
 using System.Windows;
 using ViewModels;
 using ViewModels.Adapters;
+using ViewModels.Base;
+using ViewModels.MovementService;
+using ViewModels.PaymentBoxService;
 using ViewModels.Services;
 using ViewModels.Stores;
 
@@ -30,7 +34,12 @@ namespace Payment_Box_View
         /// <param name="e"></param>
         protected override void OnStartup(StartupEventArgs e)
         {
-            navigationStore.CurrentViewModel = CreateLoginViewModel();
+            InstanceContext context = new InstanceContext(new MovementCallback());
+            IMovementService movementService = new MovementServiceClient(context);
+            IPaymentBoxService paymentBoxService = new PaymentBoxServiceClient();
+            ServiceParameter loginViewParameter = new ServiceParameter(movementService, paymentBoxService);
+
+            navigationStore.CurrentViewModel = CreateLoginViewModel(loginViewParameter);
 
             MainWindow = new MainWindow()
             {
@@ -46,9 +55,10 @@ namespace Payment_Box_View
         /// CreateLoginViewModel method to create a LoginViewModel
         /// </summary>
         /// <returns>a LoginViewModel</returns>
-        private LoginViewModel CreateLoginViewModel()
+        private LoginViewModel CreateLoginViewModel(ServiceParameter loginViewParameter)
         {
-            return LoginViewModel.LoadLoginViewModel(new ParameterNavigationService<PaymentBoxViewParameter>(navigationStore, CreatePaymentBoxViewModel));
+            var navigationService = new ParameterNavigationService<PaymentBoxViewParameter>(navigationStore, CreatePaymentBoxViewModel);
+            return LoginViewModel.LoadLoginViewModel(navigationService, loginViewParameter);
         }
 
         /// <summary>
@@ -56,9 +66,9 @@ namespace Payment_Box_View
         /// </summary>
         /// <param name="paymentBox"> PaymentBoxViewParameter to pass to the PaymentBoxViewModel</param>
         /// <returns></returns>
-        private PaymentBoxViewModel CreatePaymentBoxViewModel(PaymentBoxViewParameter paymentBox)
+        private PaymentBoxViewModel CreatePaymentBoxViewModel(PaymentBoxViewParameter paymentBoxViewParameter)
         {
-            return new PaymentBoxViewModel(new NavigationService(navigationStore, CreateLoginViewModel), paymentBox);
+            return new PaymentBoxViewModel(new ParameterNavigationService<ServiceParameter>(navigationStore, CreateLoginViewModel), paymentBoxViewParameter);
         }
     }
 }

@@ -17,7 +17,7 @@ using ViewModels.Services;
 using ViewModels.Stores;
 
 namespace ViewModels.Commands
-{ 
+{
     /// <summary>
     /// LoginCommand class. This class represents the command for the LoginView.
     /// </summary>
@@ -25,6 +25,8 @@ namespace ViewModels.Commands
     {
         private readonly ParameterNavigationService<PaymentBoxViewParameter> paymentBoxViewNavigationService;
         private readonly LoginViewModel loginViewModel;
+        private readonly ServiceParameter serviceParameter;
+
 
         public override bool CanExecute(object parameter)
         {
@@ -41,19 +43,13 @@ namespace ViewModels.Commands
         {
             try
             {
-                PaymentBoxViewParameter param;
-                InstanceContext context = new InstanceContext(new MovementCallback());
-                using (var client = new MovementServiceClient(context))
-                {
-                    var result = await client.SelectAllAsync();
-                    IEnumerable<MovementModelAdapter> movements = result.Where(x => x.PaymentBox.Id == loginViewModel.PaymentBox.Id).Select(x => new MovementModelAdapter(x));
-                    param = new PaymentBoxViewParameter(loginViewModel.PaymentBox, movements);
-                }
-                using (var client = new PaymentBoxServiceClient())
-                {
-                    await client.ActivateAsync(loginViewModel.PaymentBox.Id);
-                }
-                
+                var result = await serviceParameter.MovementService.SelectAllAsync();
+                IEnumerable<MovementModelAdapter> movements = result.Where(x => x.PaymentBox.Id == loginViewModel.PaymentBox.Id)
+                    .Select(x => new MovementModelAdapter(x));
+                PaymentBoxViewParameter param = new PaymentBoxViewParameter(loginViewModel.PaymentBox, movements, serviceParameter);
+
+                await serviceParameter.PaymentBoxService.ActivateAsync(loginViewModel.PaymentBox.Id);
+
                 paymentBoxViewNavigationService.Navigate(param);
                 param.PaymentBox.IsActive = true;
             }
@@ -61,20 +57,20 @@ namespace ViewModels.Commands
             {
                 MessageBox.Show("Failed to load Movements.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            finally
+            {
+                loginViewModel.PropertyChanged -= OnLoginViewModel_PropertyChanged;
+            }
         }
 
-        public LoginCommand(LoginViewModel loginViewModel, ParameterNavigationService<PaymentBoxViewParameter> paymentBoxViewNavigationService)
+        public LoginCommand(LoginViewModel loginViewModel, ParameterNavigationService<PaymentBoxViewParameter> paymentBoxViewNavigationService, ServiceParameter serviceParameter)
         {
+            this.serviceParameter = serviceParameter;
             this.loginViewModel = loginViewModel;
             this.paymentBoxViewNavigationService = paymentBoxViewNavigationService;
-
             loginViewModel.PropertyChanged += OnLoginViewModel_PropertyChanged;
         }
 
-        private void UpdateMovements(Queue<Movement> value)
-        {
-            //loginViewModel.UpdateMovements(value);
-        }
 
         private void OnLoginViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -88,5 +84,7 @@ namespace ViewModels.Commands
                     break;
             }
         }
+
+
     }
 }
