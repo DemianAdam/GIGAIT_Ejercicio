@@ -112,5 +112,11 @@ namespace ViewModels
             }
         }
 
+        public override void Dispose()
+        {
+            this.paymentBoxes.CollectionChanged -= PaymentBoxes_CollectionChanged;
+            base.Dispose();
+        }
+
     }
 }

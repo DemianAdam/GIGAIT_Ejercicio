@@ -33,7 +33,7 @@ namespace ViewModels
         {
             this.paymentBox = paymentBoxViewParameter.PaymentBox;
             this.movementsHistory = new ObservableStack<MovementModelAdapter>(paymentBoxViewParameter.Movements);
-            NextCustomerCommand = new NextCustomerCommand(this);
+            NextCustomerCommand = new NextCustomerCommand(this,paymentBoxViewParameter.ServiceParameter);
             GoBackCommand = new GoBackCommand(navigationService, paymentBoxViewParameter);
         }
 

@@ -59,10 +59,8 @@ namespace ViewModels.Commands
                     Name = loginViewModel.NewPaymentBoxName,
                     IsActive = true
                 };
-                using (var client = new PaymentBoxServiceClient())
-                {
-                    paymentBox.Id = await client.AddAsync(paymentBox);
-                }
+                paymentBox.Id = await serviceParameter.PaymentBoxService.AddAsync(paymentBox);
+
                 PaymentBoxViewParameter paymentBoxViewParameter = new PaymentBoxViewParameter(new PaymentBoxModelAdapter(paymentBox), serviceParameter);
                 paymentBoxViewNavigationService.Navigate(paymentBoxViewParameter);
             }

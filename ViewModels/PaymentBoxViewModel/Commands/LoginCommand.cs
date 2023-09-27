@@ -43,11 +43,10 @@ namespace ViewModels.Commands
         {
             try
             {
-                PaymentBoxViewParameter param;
                 var result = await serviceParameter.MovementService.SelectAllAsync();
                 IEnumerable<MovementModelAdapter> movements = result.Where(x => x.PaymentBox.Id == loginViewModel.PaymentBox.Id)
                     .Select(x => new MovementModelAdapter(x));
-                param = new PaymentBoxViewParameter(loginViewModel.PaymentBox, movements, serviceParameter);
+                PaymentBoxViewParameter param = new PaymentBoxViewParameter(loginViewModel.PaymentBox, movements, serviceParameter);
 
                 await serviceParameter.PaymentBoxService.ActivateAsync(loginViewModel.PaymentBox.Id);
 
@@ -57,6 +56,10 @@ namespace ViewModels.Commands
             catch (Exception)
             {
                 MessageBox.Show("Failed to load Movements.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                loginViewModel.PropertyChanged -= OnLoginViewModel_PropertyChanged;
             }
         }
 
@@ -81,5 +84,7 @@ namespace ViewModels.Commands
                     break;
             }
         }
+
+
     }
 }
