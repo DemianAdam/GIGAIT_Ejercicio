@@ -37,7 +37,7 @@ namespace Payment_Box_View
             InstanceContext context = new InstanceContext(new MovementCallback());
             IMovementService movementService = new MovementServiceClient(context);
             IPaymentBoxService paymentBoxService = new PaymentBoxServiceClient();
-            ServiceParameter loginViewParameter = new ServiceParameter(movementService, paymentBoxService);
+            var loginViewParameter = new PaymentBoxViewModelServiceParameter(movementService, paymentBoxService);
 
             navigationStore.CurrentViewModel = CreateLoginViewModel(loginViewParameter);
 
@@ -55,7 +55,7 @@ namespace Payment_Box_View
         /// CreateLoginViewModel method to create a LoginViewModel
         /// </summary>
         /// <returns>a LoginViewModel</returns>
-        private LoginViewModel CreateLoginViewModel(ServiceParameter loginViewParameter)
+        private LoginViewModel CreateLoginViewModel(PaymentBoxViewModelServiceParameter loginViewParameter)
         {
             var navigationService = new ParameterNavigationService<PaymentBoxViewParameter>(navigationStore, CreatePaymentBoxViewModel);
             return LoginViewModel.LoadLoginViewModel(navigationService, loginViewParameter);
@@ -68,7 +68,7 @@ namespace Payment_Box_View
         /// <returns></returns>
         private PaymentBoxViewModel CreatePaymentBoxViewModel(PaymentBoxViewParameter paymentBoxViewParameter)
         {
-            return new PaymentBoxViewModel(new ParameterNavigationService<ServiceParameter>(navigationStore, CreateLoginViewModel), paymentBoxViewParameter);
+            return new PaymentBoxViewModel(new ParameterNavigationService<PaymentBoxViewModelServiceParameter>(navigationStore, CreateLoginViewModel), paymentBoxViewParameter);
         }
     }
 }

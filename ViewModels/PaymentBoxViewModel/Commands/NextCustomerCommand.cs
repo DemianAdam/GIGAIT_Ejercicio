@@ -10,6 +10,7 @@ using ViewModels.Adapters;
 using ViewModels.Base;
 using ViewModels.MovementService;
 using ViewModels.PaymentBoxService;
+using ViewModels.Services;
 
 namespace ViewModels.Commands
 {
@@ -19,9 +20,7 @@ namespace ViewModels.Commands
     public class NextCustomerCommand : AsyncCommandBase
     {
         private readonly PaymentBoxViewModel paymentBoxViewModel;
-        private readonly ServiceParameter serviceParameter;
-        private readonly IMovementService movementService;
-        private readonly IPaymentBoxService paymentBoxService;
+        private readonly PaymentBoxViewModelServiceParameter serviceParameter;
 
         public override bool CanExecute(object parameter)
         {
@@ -63,7 +62,7 @@ namespace ViewModels.Commands
             }
         }
 
-        public NextCustomerCommand(PaymentBoxViewModel paymentBoxViewModel, ServiceParameter serviceParameter)
+        public NextCustomerCommand(PaymentBoxViewModel paymentBoxViewModel, PaymentBoxViewModelServiceParameter serviceParameter)
         {
             this.paymentBoxViewModel = paymentBoxViewModel;
             this.serviceParameter = serviceParameter;

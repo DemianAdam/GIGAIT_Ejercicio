@@ -18,10 +18,10 @@ namespace ViewModels.Commands
     /// </summary>
     public class GoBackCommand : AsyncCommandBase
     {
-        private readonly ParameterNavigationService<ServiceParameter> navigationService;
+        private readonly ParameterNavigationService<PaymentBoxViewModelServiceParameter> navigationService;
         private readonly PaymentBoxViewParameter paymentBoxViewParameter;
 
-        public GoBackCommand(ParameterNavigationService<ServiceParameter> navigationService, PaymentBoxViewParameter paymentBoxViewParameter)
+        public GoBackCommand(ParameterNavigationService<PaymentBoxViewModelServiceParameter> navigationService, PaymentBoxViewParameter paymentBoxViewParameter)
         {
             this.paymentBoxViewParameter = paymentBoxViewParameter;
             this.navigationService = navigationService;
@@ -39,7 +39,7 @@ namespace ViewModels.Commands
                 await paymentBoxViewParameter.ServiceParameter.PaymentBoxService.DeactivateAsync(paymentBoxViewParameter.PaymentBox.Id);
                 paymentBoxViewParameter.PaymentBox.IsActive = false;
 
-                ServiceParameter param = new ServiceParameter(paymentBoxViewParameter.ServiceParameter.MovementService, paymentBoxViewParameter.ServiceParameter.PaymentBoxService);
+                PaymentBoxViewModelServiceParameter param = new PaymentBoxViewModelServiceParameter(paymentBoxViewParameter.ServiceParameter.MovementService, paymentBoxViewParameter.ServiceParameter.PaymentBoxService);
                 navigationService.Navigate(param);
             }
             catch (FaultException<SqlInvalidOperationException> ex)

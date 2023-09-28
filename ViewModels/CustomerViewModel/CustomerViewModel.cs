@@ -5,11 +5,13 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using ViewModels.Base;
 using ViewModels.CustomerService;
 using ViewModels.CustomerViewModel.Commands;
 using ViewModels.MovementService;
+using ViewModels.Services;
 
 namespace ViewModels.CustomerViewModel
 {
@@ -21,7 +23,7 @@ namespace ViewModels.CustomerViewModel
         private List<MovementModelAdapter> firstMovements = new List<MovementModelAdapter>();
         public ObservableQueue<MovementModelAdapter> Movements { get; }
         public ObservableQueue<CustomerModelAdapter> Customers { get; }
-        private readonly IMovementService movementService;
+
 
 
         /// <summary>
@@ -72,6 +74,8 @@ namespace ViewModels.CustomerViewModel
         }
 
         private string customerLastName;
+        private readonly ICustomerViewModelService customerViewModelService;
+
         public string CustomerLastName
         {
             get
@@ -87,17 +91,12 @@ namespace ViewModels.CustomerViewModel
 
         public ICommand CreateCustomerCommand { get; }
 
-        public ICommand SuscribeCommand { get; }
-
-
-
-        public CustomerViewModel(IMovementService movementService, ICustomerService customerService)
+        public CustomerViewModel(ICustomerViewModelService customerViewModelService)
         {
-            this.movementService = movementService;
+            this.customerViewModelService = customerViewModelService;
             Customers = new ObservableQueue<CustomerModelAdapter>();
             Movements = new ObservableQueue<MovementModelAdapter>();
-            CreateCustomerCommand = new CreateCustomerCommand(this, customerService);
-            SuscribeCommand = new SuscribeCommand(this, movementService);
+            CreateCustomerCommand = new CreateCustomerCommand(this, customerViewModelService.CustomerService);
             Customers.CollectionChanged += Customers_CollectionChanged;
             Movements.CollectionChanged += Movements_CollectionChanged;
         }
@@ -142,23 +141,41 @@ namespace ViewModels.CustomerViewModel
         }
 
 
-        public static CustomerViewModel LoadCustomerViewModel(IMovementService movementService, ICustomerService customerService)
+        public async static Task<CustomerViewModel> LoadCustomerViewModel(ICustomerViewModelService customerViewModelService)
         {
-            CustomerViewModel customerViewModel = new CustomerViewModel(movementService, customerService);
-            customerViewModel.SuscribeCommand.Execute(null);
+            CustomerViewModel customerViewModel = new CustomerViewModel(customerViewModelService);
+
+            try
+            {
+                var movements = await customerViewModelService.MovementService.SelectAllAsync();
+                customerViewModel.UpdateMovements(movements);
+            }
+            catch
+            {
+                MessageBox.Show("Failed to get movements.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            try
+            {
+                var customers = await customerViewModelService.CustomerService.SelectAllUnattendedCustomersAsync();
+                customerViewModel.UpdateCustomers(customers);
+            }
+            catch
+            {
+                MessageBox.Show("Failed to get customers.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             return customerViewModel;
         }
 
         public void UpdateMovements(IEnumerable<Movement> movements)
         {
-            this.Movements.Clear();
             foreach (var movement in movements)
             {
-                if (Customers.Any())
-                {
-                    Customer customer = Customers.Dequeue().ToCustomer();
-                    movement.Customer = customer;
-                }
+                /* if (Customers.Any())
+                 {
+                     Customer customer = Customers.Dequeue().ToCustomer();
+                     movement.Customer = customer;
+                 }*/
                 this.Movements.Enqueue(new MovementModelAdapter(movement));
             }
             firstMovements = this.Movements.Take(4).ToList();
@@ -173,6 +190,14 @@ namespace ViewModels.CustomerViewModel
             Customers.CollectionChanged -= Customers_CollectionChanged;
             Movements.CollectionChanged -= Movements_CollectionChanged;
             base.Dispose();
+        }
+
+        public void UpdateCustomers(IEnumerable<Customer> customers)
+        {
+            foreach (var customer in customers)
+            {
+                Customers.Enqueue(new CustomerModelAdapter(customer));
+            }
         }
     }
 }

@@ -29,7 +29,7 @@ namespace ViewModels
         public ICommand GoBackCommand { get; }
         public ObservableStack<MovementModelAdapter> MovementsHistory => movementsHistory;
 
-        public PaymentBoxViewModel(ParameterNavigationService<ServiceParameter> navigationService, PaymentBoxViewParameter paymentBoxViewParameter)
+        public PaymentBoxViewModel(ParameterNavigationService<PaymentBoxViewModelServiceParameter> navigationService, PaymentBoxViewParameter paymentBoxViewParameter)
         {
             this.paymentBox = paymentBoxViewParameter.PaymentBox;
             this.movementsHistory = new ObservableStack<MovementModelAdapter>(paymentBoxViewParameter.Movements);

@@ -61,7 +61,7 @@ namespace ViewModels
             }
         }
 
-        public LoginViewModel(ParameterNavigationService<PaymentBoxViewParameter> paymentBoxViewNavigationService, ServiceParameter loginViewParameter)
+        public LoginViewModel(ParameterNavigationService<PaymentBoxViewParameter> paymentBoxViewNavigationService, PaymentBoxViewModelServiceParameter loginViewParameter)
         {
             this.paymentBoxes = new ObservableCollection<PaymentBoxModelAdapter>();
             this.paymentBoxes.CollectionChanged += PaymentBoxes_CollectionChanged;
@@ -82,7 +82,7 @@ namespace ViewModels
             }
         }
 
-        public static LoginViewModel LoadLoginViewModel(ParameterNavigationService<PaymentBoxViewParameter> navigationService, ServiceParameter loginViewParameter)
+        public static LoginViewModel LoadLoginViewModel(ParameterNavigationService<PaymentBoxViewParameter> navigationService, PaymentBoxViewModelServiceParameter loginViewParameter)
         {
             LoginViewModel loginViewModel = new LoginViewModel(navigationService, loginViewParameter);
             loginViewModel.LoadPaymentBoxesCommand.Execute(null);

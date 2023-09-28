@@ -25,7 +25,7 @@ namespace ViewModels.Commands
     {
         private readonly ParameterNavigationService<PaymentBoxViewParameter> paymentBoxViewNavigationService;
         private readonly LoginViewModel loginViewModel;
-        private readonly ServiceParameter serviceParameter;
+        private readonly PaymentBoxViewModelServiceParameter serviceParameter;
 
 
         public override bool CanExecute(object parameter)
@@ -63,7 +63,7 @@ namespace ViewModels.Commands
             }
         }
 
-        public LoginCommand(LoginViewModel loginViewModel, ParameterNavigationService<PaymentBoxViewParameter> paymentBoxViewNavigationService, ServiceParameter serviceParameter)
+        public LoginCommand(LoginViewModel loginViewModel, ParameterNavigationService<PaymentBoxViewParameter> paymentBoxViewNavigationService, PaymentBoxViewModelServiceParameter serviceParameter)
         {
             this.serviceParameter = serviceParameter;
             this.loginViewModel = loginViewModel;

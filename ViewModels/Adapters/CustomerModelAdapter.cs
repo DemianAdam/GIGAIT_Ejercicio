@@ -24,16 +24,5 @@ namespace ViewModels
         {
             return $"Id: {Id} | Name: {Name} | LastName: {LastName} | RegistrationDate: {RegistrationDate}";
         }
-
-        internal Customer ToCustomer()
-        {
-            return new Customer()
-            {
-                Id = customer.Id,
-                Name = customer.Name,
-                LastName = customer.LastName,
-                RegistrationDate = customer.RegistrationDate
-            };
-        }
     }
 }

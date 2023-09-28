@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using ViewModels.MovementService;
 using ViewModels.PaymentBoxService;
 
-namespace ViewModels.Adapters
+namespace ViewModels.Services
 {
-    public class ServiceParameter
+    public class PaymentBoxViewModelServiceParameter
     {
-        public ServiceParameter(IMovementService movementService, IPaymentBoxService paymentBoxService)
+        public PaymentBoxViewModelServiceParameter(IMovementService movementService, IPaymentBoxService paymentBoxService)
         {
             MovementService = movementService;
             PaymentBoxService = paymentBoxService;

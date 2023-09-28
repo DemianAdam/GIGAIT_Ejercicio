@@ -22,14 +22,14 @@ namespace ViewModels.Commands
     {
         private readonly LoginViewModel loginViewModel;
         private readonly ParameterNavigationService<PaymentBoxViewParameter> paymentBoxViewNavigationService;
-        private readonly ServiceParameter serviceParameter;
+        private readonly PaymentBoxViewModelServiceParameter serviceParameter;
 
         override public bool CanExecute(object parameter)
         {
             return !string.IsNullOrEmpty(loginViewModel.NewPaymentBoxName) && base.CanExecute(parameter);
         }
 
-        public SignUpCommand(LoginViewModel loginViewModel, ParameterNavigationService<PaymentBoxViewParameter> paymentBoxViewNavigationService, ServiceParameter loginViewParameter)
+        public SignUpCommand(LoginViewModel loginViewModel, ParameterNavigationService<PaymentBoxViewParameter> paymentBoxViewNavigationService, PaymentBoxViewModelServiceParameter loginViewParameter)
         {
             this.serviceParameter = loginViewParameter;
             this.loginViewModel = loginViewModel;

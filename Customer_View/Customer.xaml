@@ -51,6 +51,23 @@
             <TextBlock Grid.Row="3" Text="{Binding FirstMovement}" ToolTip="{Binding FirstMovement}" TextTrimming="CharacterEllipsis" TextAlignment="Center" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto"  Height="auto"></TextBlock>
         </Grid>
 
+        <ListBox Grid.Row="0" Grid.Column="2" ItemsSource="{Binding Customers}" Padding="10">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="ID: {0} Nombre Completo: {1} Registrado el: {2}">
+                                <Binding Path="Id" />
+                                <Binding Path="FullName" />
+                                <Binding Path="RegistrationDate" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+        </ListBox>
+
         <Border Grid.Row="1" Grid.Column="1" BorderThickness="1" BorderBrush="Black" Padding="2">
             <Grid >
                 <Grid.ColumnDefinitions>

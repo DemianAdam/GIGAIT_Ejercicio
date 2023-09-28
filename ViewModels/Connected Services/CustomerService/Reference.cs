@@ -98,10 +98,10 @@ namespace ViewModels.CustomerService {
         System.Threading.Tasks.Task DeleteAsync(Models.Customer entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRUDServiceOf_Customer/SelectAll", ReplyAction="http://tempuri.org/ICRUDServiceOf_Customer/SelectAllResponse")]
-        Models.Customer[] SelectAll();
+        System.Collections.Generic.List<Models.Customer> SelectAll();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRUDServiceOf_Customer/SelectAll", ReplyAction="http://tempuri.org/ICRUDServiceOf_Customer/SelectAllResponse")]
-        System.Threading.Tasks.Task<Models.Customer[]> SelectAllAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Models.Customer>> SelectAllAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRUDServiceOf_Customer/SelectById", ReplyAction="http://tempuri.org/ICRUDServiceOf_Customer/SelectByIdResponse")]
         Models.Customer SelectById(int id);
@@ -110,10 +110,10 @@ namespace ViewModels.CustomerService {
         System.Threading.Tasks.Task<Models.Customer> SelectByIdAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerService/SelectAllUnattendedCustomers", ReplyAction="http://tempuri.org/ICustomerService/SelectAllUnattendedCustomersResponse")]
-        Models.Customer[] SelectAllUnattendedCustomers();
+        System.Collections.Generic.List<Models.Customer> SelectAllUnattendedCustomers();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomerService/SelectAllUnattendedCustomers", ReplyAction="http://tempuri.org/ICustomerService/SelectAllUnattendedCustomersResponse")]
-        System.Threading.Tasks.Task<Models.Customer[]> SelectAllUnattendedCustomersAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Models.Customer>> SelectAllUnattendedCustomersAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -167,11 +167,11 @@ namespace ViewModels.CustomerService {
             return base.Channel.DeleteAsync(entity);
         }
         
-        public Models.Customer[] SelectAll() {
+        public System.Collections.Generic.List<Models.Customer> SelectAll() {
             return base.Channel.SelectAll();
         }
         
-        public System.Threading.Tasks.Task<Models.Customer[]> SelectAllAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Models.Customer>> SelectAllAsync() {
             return base.Channel.SelectAllAsync();
         }
         
@@ -183,11 +183,11 @@ namespace ViewModels.CustomerService {
             return base.Channel.SelectByIdAsync(id);
         }
         
-        public Models.Customer[] SelectAllUnattendedCustomers() {
+        public System.Collections.Generic.List<Models.Customer> SelectAllUnattendedCustomers() {
             return base.Channel.SelectAllUnattendedCustomers();
         }
         
-        public System.Threading.Tasks.Task<Models.Customer[]> SelectAllUnattendedCustomersAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Models.Customer>> SelectAllUnattendedCustomersAsync() {
             return base.Channel.SelectAllUnattendedCustomersAsync();
         }
     }

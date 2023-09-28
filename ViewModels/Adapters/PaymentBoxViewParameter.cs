@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ViewModels.MovementService;
 using ViewModels.PaymentBoxService;
+using ViewModels.Services;
 
 namespace ViewModels.Adapters
 {
@@ -13,14 +14,14 @@ namespace ViewModels.Adapters
     /// </summary>
     public class PaymentBoxViewParameter
     {
-        public PaymentBoxViewParameter(PaymentBoxModelAdapter paymentBox, ServiceParameter serviceParameter)
+        public PaymentBoxViewParameter(PaymentBoxModelAdapter paymentBox, PaymentBoxViewModelServiceParameter serviceParameter)
         {
             PaymentBox = paymentBox;
             Movements = new List<MovementModelAdapter>();
             ServiceParameter = serviceParameter;
         }
 
-        public PaymentBoxViewParameter(PaymentBoxModelAdapter paymentBox, IEnumerable<MovementModelAdapter> movements, ServiceParameter serviceParameter)
+        public PaymentBoxViewParameter(PaymentBoxModelAdapter paymentBox, IEnumerable<MovementModelAdapter> movements, PaymentBoxViewModelServiceParameter serviceParameter)
         {
             PaymentBox = paymentBox;
             Movements = movements;
@@ -29,6 +30,6 @@ namespace ViewModels.Adapters
 
         public PaymentBoxModelAdapter PaymentBox { get; }
         public IEnumerable<MovementModelAdapter> Movements { get; }
-        public ServiceParameter ServiceParameter { get; }
+        public PaymentBoxViewModelServiceParameter ServiceParameter { get; }
     }
 }

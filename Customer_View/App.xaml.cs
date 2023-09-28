@@ -11,6 +11,7 @@ using ViewModels.Base;
 using ViewModels.CustomerService;
 using ViewModels.CustomerViewModel;
 using ViewModels.MovementService;
+using ViewModels.Services;
 using ViewModels.Stores;
 
 namespace Customer_View
@@ -20,24 +21,26 @@ namespace Customer_View
     /// </summary>
     public partial class App : Application
     {
-        private readonly NavigationStore navigationStore;
+        IMovementService movementService;
+        ICustomerService customerService;
+        ICustomerViewModelService customerViewModelService;
+        MovementCallback movementCallback;
         public App()
         {
-            navigationStore = new NavigationStore();
+            movementCallback = new MovementCallback();
+            InstanceContext context = new InstanceContext(movementCallback);
+            movementService = new MovementServiceClient(context);
+            customerService = new CustomerServiceClient();
+            customerViewModelService = new CustomerViewModelService(movementService, customerService);
         }
 
         /// <summary>
         /// OnStartup method to load the MainWindow and set the DataContext to the CustomerViewModel
         /// </summary>
-        protected override void OnStartup(StartupEventArgs e)
+        protected async override void OnStartup(StartupEventArgs e)
         {
-            
-            MovementCallback movementCallback = new MovementCallback();
-            InstanceContext context = new InstanceContext(movementCallback);    
-            IMovementService movementService = new MovementServiceClient(context);
-            ICustomerService customerService = new CustomerServiceClient();
-
-            CustomerViewModel customerViewModel = CustomerViewModel.LoadCustomerViewModel(movementService, customerService);
+            movementService.Subscribe();
+            CustomerViewModel customerViewModel = await CustomerViewModel.LoadCustomerViewModel(customerViewModelService);
             movementCallback.DataRecived += customerViewModel.UpdateMovements;
             MainWindow = new MainWindow()
             {
@@ -49,6 +52,7 @@ namespace Customer_View
 
         override protected void OnExit(ExitEventArgs e)
         {
+            movementService.Unsubscribe();
             base.OnExit(e);
         }
     }
